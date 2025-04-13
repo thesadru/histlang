@@ -1,7 +1,5 @@
 """Sound change syntax tokenizer."""
 # TODO: handle optionals e.g. (C)V
-# TODO: handle number subscripts as part of basephone
-
 from __future__ import annotations
 
 import dataclasses
@@ -309,8 +307,6 @@ class PhoneticTokenizer(Tokenizer):
             while not self.lineend() and is_subscript(self.peek_char()):
                 base += self.read_char()
 
-        # TODO: subscripts as part of base
-
         suprasegmental_modifiers = ""
         diacritics: list[str] = []
         while not self.lineend():
@@ -442,7 +438,6 @@ class SoundChangeTokenizer(PhoneticTokenizer):
         if len(sources) != len(outputs) and len(outputs) > 1:
             raise Exception("Mismatched source/output sizes")
 
-        # TODO: allow condition to be just +stress
         conditions: list[tuple[list[Phoneme | PhonemeGroup | ConditionChar], bool]] = [([], True)]
         self.skip_spaces()
         while not self.lineend():

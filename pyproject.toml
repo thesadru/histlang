@@ -3,7 +3,7 @@ name = "histlang"
 version = "0.1.0"
 description = "Sound change reverser."
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = []
 
 [tool.ruff]

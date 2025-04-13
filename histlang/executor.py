@@ -250,9 +250,8 @@ def find_differing_phoneme(phoneme: tokens.Phoneme, modifiers: typing.Sequence[t
         if not remaining_metadata_inclusive and not remaining_metadata_exclusive:
             possible_phonemes.append(tokens.Phoneme(potential_basephoneme.unichar, required_diacritics, syllable=phoneme.syllable))
 
-    # TODO: pick the best option
     if possible_phonemes:
-        return possible_phonemes[0]
+        return min(possible_phonemes, key=lambda i: len(i.diacritics))
 
     required, forbidden = (*required_metadata_exclusive.values(), *required_metadata_inclusive), (*forbidden_metadata_exclusive.values(),)
     raise Exception(f"Cannot create {phoneme}{''.join(map(str, modifiers))} (i.e. phoneme with [{','.join(required)}] without [{''.join(forbidden)}])")
