@@ -102,6 +102,13 @@ phonemes: list[tokens.PhonemeMetadata] = [
     tokens.PhonemeMetadata("ɥ", ["consonant", "voiced", "palatal", "approximant", "labialized"]),
     tokens.PhonemeMetadata("ʍ", ["consonant", "voiceless", "velar", "fricative", "labialized"]),
     tokens.PhonemeMetadata("w", ["consonant", "voiced", "velar", "approximant", "labialized"]),
+    tokens.PhonemeMetadata("ts", ["consonant", "voiceless", "alveolar", "affricate"]),
+    tokens.PhonemeMetadata("dz", ["consonant", "voiced", "alveolar", "affricate"]),
+    tokens.PhonemeMetadata("tʃ", ["consonant", "voiceless", "postalveolar", "affricate"]),
+    tokens.PhonemeMetadata("dʒ", ["consonant", "voiced", "postalveolar", "affricate"]),
+    tokens.PhonemeMetadata("tɕ", ["consonant", "voiceless", "palatal", "affricate"]),
+    tokens.PhonemeMetadata("dʑ", ["consonant", "voiced", "palatal", "affricate"]),
+
 ]
 
 metadata_exclusivity: typing.Mapping[str, typing.Sequence[str]] = {

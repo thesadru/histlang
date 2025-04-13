@@ -189,7 +189,7 @@ def is_connector(unichar: str) -> bool:
     """Checks whether a unicode character is a connector."""
     category = unicodedata.category(unichar)
     name = unicodedata.name(unichar)
-    return category == "Mn" and "DOUBLE BREVE" in name or category == "Pc" and "TIE" in name
+    return (category == "Mn" and "DOUBLE" in name and "BREVE" in name) or (category == "Pc" and "TIE" in name)
 
 
 def is_subscript(unichar: str) -> bool:
@@ -436,6 +436,8 @@ class SoundChangeTokenizer(PhoneticTokenizer):
         if len(outputs) > 1:
             outputs = [x for x in outputs if x]
         if len(sources) != len(outputs) and len(outputs) > 1:
+            from pprint import pprint
+            pprint(locals())
             raise Exception("Mismatched source/output sizes")
 
         conditions: list[tuple[list[Phoneme | PhonemeGroup | ConditionChar], bool]] = [([], True)]

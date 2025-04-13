@@ -302,9 +302,9 @@ def find_source_match(
                             word.suprasegmentals[word.phonemes[cur_index].syllable],
                         ):
                             break
+                        group_matches[group_matches_index] = group_indexes[match_token_idx]
                         cur_index += 1
                         group_matches_index += 1
-                        group_matches[group_matches_index] = group_indexes[match_token_idx]
                     else:
                         continue
                     break
@@ -392,6 +392,8 @@ def find_soundchange_matches(word: tokens.Word, change: tokens.SoundChange) -> l
 
 def determine_syllable_of_match(word: tokens.Word, match: Match) -> int:
     """Determine the syllable for a given match by finding the corresponding vowel."""
+    if match.start >= len(word.phonemes):
+        return word.phonemes[-1].syllable
     for idx in range(match.start, match.end + 1):
         m, _ = get_phoneme_metadata(word.phonemes[idx])
         if "vowel" in m or "syllabic" in m:
